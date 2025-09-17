@@ -1,4 +1,35 @@
 require("config.options")
 require("config.keymaps")
 require("config.lazy")
-require("config.lsp")
+
+
+
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('clangd')
+
+vim.lsp.config('lua_ls', {
+    settings = {
+	Lua = {
+	    diagnostics = {disable = { "lowercase-global"},}
+	}
+    }
+})
+vim.diagnostic.config({
+    virtual_text = true,
+    severity_sort = true,
+    float = {
+	style = 'minimal',
+	border = 'rounded',
+	header = '',
+	prefix = '',
+    },
+    signs = {
+	text = {
+	    [vim.diagnostic.severity.ERROR] = '✘',
+	    [vim.diagnostic.severity.WARN] = '▲',
+	    [vim.diagnostic.severity.HINT] = '⚑',
+	    [vim.diagnostic.severity.INFO] = '»',
+	},
+    },
+})
