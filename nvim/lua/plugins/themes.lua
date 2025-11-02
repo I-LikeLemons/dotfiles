@@ -1,9 +1,14 @@
+local function enable_transparency()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+end
 return {
     {
-	"rose-pine/neovim",
-	name = "rose-pine",
+	"shaunsingh/nord.nvim",
 	config = function()
-	    vim.cmd("colorscheme rose-pine-moon")
+	    vim.cmd("colorscheme nord")
+	    enable_transparency()
 	end,
     },
     {
@@ -14,7 +19,7 @@ return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	opts = {
-	    theme = 'rose-pine-moon',
+	    theme = 'nord',
 	},
     },
 }
