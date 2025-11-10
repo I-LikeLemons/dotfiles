@@ -1,0 +1,218 @@
+@define-color foreground #fffbf6;
+@define-color background #101421;
+
+/* Normal/regular colors (color palette 0-7) */
+@define-color regular0 #2e2e2e;  /* black */
+@define-color regular1 #eb4129;  /* red */
+@define-color regular2 #abe047;  /* green */
+@define-color regular3 #f6c744;  /* yellow */
+@define-color regular4 #47a0f3;  /* blue */
+@define-color regular5 #7b5cb0;  /* magenta */
+@define-color regular6 #64dbed;  /* cyan */
+@define-color regular7 #e5e9f0;  /* white */
+
+/* Bright colors (color palette 8-15) */
+@define-color bright0 #565656;   /* bright black */
+@define-color bright1 #ec5357;   /* bright red */
+@define-color bright2 #c0e17d;   /* bright green */
+@define-color bright3 #f9da6a;   /* bright yellow */
+@define-color bright4 #49a4f8;   /* bright blue */
+@define-color bright5 #a47de9;   /* bright magenta */
+@define-color bright6 #99faf2;   /* bright cyan */
+@define-color bright7 #ffffff;   /* bright white */
+* {
+    border: none;
+    margin:0;
+    padding:0;
+    min-height:0;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font",NF sans-serif;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: alpha(@regular7, 0.6);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+button {
+    margin:5px;
+    color: @regular0;
+    transition:all 150ms ease-in-out;
+    padding: 0 5px;
+    border-radius:20px;
+    background-color: alpha(@regular7,0.5);
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+}
+
+
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    border-radius:20px;
+    padding: 0 10px;
+    background-color: alpha(@regular7,0.5);
+    border: 2px solid @regular7;
+}
+
+#workspaces button.focused, #workspaces button.active {
+    padding: 0 20px;
+    border: 4px @background;
+    background-color: alpha(@bright7,0.5);
+    border: 2px solid @regular7;
+}
+
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#custom-power,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#window,
+#mpd {
+    color: @regular0;
+    transition:all 150ms ease-in-out;
+    padding: 0 10px;
+}
+#custom-power {
+    padding-right:20px;
+    padding-left:5px;
+    color: @regular0;
+    transition:all 150ms ease-in-out;
+    margin:5px;
+    border-radius:20px;
+    background-color: alpha(@regular7,0.5);
+}
+#custom-power:hover{
+    padding-right:30px;
+    padding-left:10px;
+    transition:all 150ms ease-in-out;
+    border: 4px @background;
+    background-color: alpha(@bright7,0.5);
+    border: 2px solid @regular7;
+}
+#right {
+    color: @regular0;
+    transition:all 150ms ease-in-out;
+    margin:5px;
+    border-radius:20px;
+    background-color: alpha(@regular7,0.5);
+}
+#right:hover{
+    transition:all 150ms ease-in-out;
+    padding-left:25px;
+    border: 4px @background;
+    background-color: alpha(@bright7,0.5);
+    border: 2px solid @regular7;
+}
+#tray {
+}
+#clock {
+    color: @regular0;
+}
+#workspaces {
+    margin: 0 4px;
+}
+
+
+#battery {
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
+#cpu {
+}
+
+#memory {
+}
+
+#backlight {
+}
+
+#network {
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+}
+
+#temperature {
+}
+
+#temperature.critical {
+}
+
+#tray {
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
