@@ -7,19 +7,26 @@ return {
     {
 	"shaunsingh/nord.nvim",
 	config = function()
-	    vim.cmd("colorscheme nord")
-	    enable_transparency()
+	    require("vague").setup({
+		colors = {
+		    bg = "#080808",
+		},
+	    })
+	    vim.cmd("colorscheme vague")
 	end,
+    },
+    { "bluz71/vim-moonfly-colors",
+	name = "moonfly",
+	lazy = false,
+	priority = 1000 
+    },
+    {
+	"vague-theme/vague.nvim",
+	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	priority = 1000, -- make sure to load this before all the other plugins
     },
     {
 	"morhetz/gruvbox",
 	name = "gruvbox",
-    },
-    {
-	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	opts = {
-	    theme = 'nord',
-	},
     },
 }
